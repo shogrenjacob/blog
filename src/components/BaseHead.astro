@@ -30,26 +30,12 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
 	(function() {
-		// https://dashboard.emailjs.com/admin/account
 		emailjs.init({
 		  publicKey: "JGyjN_uMKhuCCKhn9",
 		});
 	})();
 </script>
-<script type="text/javascript">
-	window.onload = function() {
-		document.getElementById('contact-form').addEventListener('submit', function(event) {
-			event.preventDefault();
-			// these IDs from the previous steps
-			emailjs.sendForm('service_30x8d8g', 'template_6k6gsoq', this)
-				.then(() => {
-					console.log('SUCCESS!');
-				}, (error) => {
-					console.log('FAILED...', error);
-				});
-		});
-	}
-</script>
+<script type="text/javascript" src="/src/scripts/ContactFormHandler.js"></script>
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
