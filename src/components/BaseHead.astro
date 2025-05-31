@@ -2,6 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
+import dotenv from 'dotenv'
 import { SITE_TITLE } from '../consts';
 
 interface Props {
@@ -26,6 +27,29 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 	title={SITE_TITLE}
 	href={new URL('rss.xml', Astro.site)}
 />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+	(function() {
+		// https://dashboard.emailjs.com/admin/account
+		emailjs.init({
+		  publicKey: "JGyjN_uMKhuCCKhn9",
+		});
+	})();
+</script>
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('contact-form').addEventListener('submit', function(event) {
+			event.preventDefault();
+			// these IDs from the previous steps
+			emailjs.sendForm('service_30x8d8g', 'template_6k6gsoq', this)
+				.then(() => {
+					console.log('SUCCESS!');
+				}, (error) => {
+					console.log('FAILED...', error);
+				});
+		});
+	}
+</script>
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->

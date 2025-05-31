@@ -1,6 +1,32 @@
 ---
 ---
 
-<form action="">
-    
+<form id="contact-form">
+    <input type="text" name="full_name" required placeholder="Full Name">
+    <input type="email" name="email" required placeholder="Email">
+    <textarea name="message" required placeholder="Your Message..."></textarea>
+    <input type="submit" value="Send" id="sub">
 </form>
+
+<style>
+    input, textarea {
+        border: 1px solid black;
+        color: black;
+        background-color: #F5F5F5;
+        width: 356px;
+        margin: 4px;
+        padding: 2px;
+    }
+
+    textarea {
+        height: 293px;
+        padding: 2px;
+    }
+
+    input::placeholder, textarea::placeholder {
+        font-family: 'Verdana';
+        color: black;
+        opacity: 1;
+    }
+    
+</style>
