@@ -1,0 +1,12 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+---
+
+<!doctype html>
+<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}></BaseHead>
+<body>
+    <Header></Header>
+    <h1>Test Page</h1>
+</body>
