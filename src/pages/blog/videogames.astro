@@ -7,9 +7,11 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Category from '../../components/Category.astro';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog'))
+    .filter((post) => post.data.category === 'Videogames')
+    .sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    );
 ---
 
 <!doctype html>
@@ -31,6 +33,7 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li {
 				width: calc(50% - 1rem);
+                min-width: 500px;
 				border: 1px solid black;
 				background-color: #F5F5F5;
 				border-radius: 2px;

@@ -4,19 +4,24 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import ContactForm from '../components/ContactForm.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
 			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
 				margin: 0;
 			}
 			.hero-image {
@@ -46,21 +51,26 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: rgb(var(--black));
+				opacity: 0.7;
 			}
 			.last-updated-on {
 				font-style: italic;
+			}
+
+			.contact-me {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
 			}
 		</style>
 	</head>
 
 	<body>
-		<Header />
 		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
+			<Header />
+			<article class="content-container">
 				<div class="prose">
 					<div class="title">
 						<div class="date">
@@ -76,10 +86,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						<h1>{title}</h1>
 						<hr />
 					</div>
-					<slot />
+					<div class="blog-styles">
+						<slot />
+					</div>
 				</div>
 			</article>
+			<div class="content-container contact-me">
+				<a href="/blog" style="margin-bottom:100px;"><u>Back</u></a>
+				<h2 class="bottom-header"><u>Contact Me</u> 🖋️</h2>
+				<ContactForm></ContactForm>
+			</div>
+
 		</main>
-		<Footer />
 	</body>
 </html>
