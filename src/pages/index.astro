@@ -5,6 +5,16 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import PostPreview from '../components/PostPreview.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import Category from '../components/Category.astro';
+
+const pinnedPost = (await getCollection('blog'))
+    .filter((post) => post.data.category === 'Pinned')
+    .sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    );
 ---
 
 <!doctype html>
@@ -19,7 +29,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<div>
 					<img src="/blog-placeholder-2.jpg" alt="Me!">
 					<!-- Pinned Posts -->
-					<h2 class="bottom-header"><u>Pinned Posts</u> 📌</h2>
+					<h2 class="bottom-header" style="margin-bottom: 27px;"><u>Pinned Post</u> 📌</h2>
+					{
+						pinnedPost.map((post) => (
+							<PostPreview 
+								id={ post.id } 
+								title={ post.data.title } 
+								date={ post.data.pubDate }
+								description={ post.data.description }
+								category={ post.data.category } >
+							</PostPreview>
+						)
+						)
+					}
 				</div>
 				<div>
 					<h2><u>About</u> 🌎</h2>
@@ -48,6 +70,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	img {
 		height: 320px;
 		width: 320px;
+		margin-bottom: -25px;
 	}
 
 	.flex-container div {
@@ -61,5 +84,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 	.bottom-header {
 		margin-top: 42px;
+		margin-bottom: 27px;
 	}
 </style>

@@ -1,0 +1,36 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import Category from './Category.astro';
+
+interface Props {
+    id: string;
+    title: string;
+    date: Date;
+    description: string;
+    category: string | undefined;
+}
+
+const { id, title, date, description, category } = Astro.props
+---
+<style>
+    div {
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 2px;
+    }
+</style>
+
+<div>
+    <a href={`/blog/${ id }/`}>
+        <h4 class="title">{ title }</h4>
+         <p class="date">
+            Last Updated On: <FormattedDate date={ date } />
+        </p>
+        <hr>
+        <p>{ description }</p>
+    </a>
+    <a href={`/blog/${ id }/`}>Read More &rarr;</a>
+    <Category category={`${ category }`}></Category>
+</div>
+
+
