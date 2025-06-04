@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props {
     fn: string;
     text: string;
@@ -11,3 +13,4 @@ const { fn, text, size } = Astro.props
 <button onclick={ fn } style=`font-size: ${ size }px` class="button-styles">
     { text }
 </button>
+
