@@ -3,21 +3,6 @@ import HeaderLink from './HeaderLink.astro';
 import Button from './Button.astro';
 import { SITE_TITLE } from '../consts';
 import { getCollection } from 'astro:content';
-
-const posts = (await getCollection('blog'))
-    .filter((post) => post.data.category === 'Computing')
-    .sort(
-        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-    );
-
-function getRandomInt(max: number) {
-	return Math.floor(Math.random() * max)
-}
-
-var randomPostNum = getRandomInt(posts.length)
-var randomPost = posts[randomPostNum]
-console.log(randomPostNum)
-
 ---
 
 <header>
@@ -29,9 +14,8 @@ console.log(randomPostNum)
 		<HeaderLink href="/blog/videogames" class="header-link">Videogames</HeaderLink>
 		<HeaderLink href="/blog/computing" class="header-link">Computing</HeaderLink>
 		<HeaderLink href="/blog/life" class="header-link">Life</HeaderLink>
-		<!-- <HeaderLink href=`/blog/${randomPost.id}`>Random</HeaderLink> -->
 
-		<Button fn="changeme()" text="Feelin' Lucky" size="18"/>
+		<Button fn="randomPost()" text="Feelin' Lucky" size="18"/>
 	</nav>
 </header>
 <style>

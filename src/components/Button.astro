@@ -1,6 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
-
 interface Props {
     fn: string;
     text: string;
@@ -8,9 +6,24 @@ interface Props {
 }
 
 const { fn, text, size } = Astro.props
+
 ---
+
+<script type="text/javascript">
+
+    function randomInt(max) {
+        return Math.floor(Math.random() * max)
+    }
+
+    async function randomPost() {
+        // var newInt = randomInt(POST_LIST.length);
+        alert("New Post: ")
+
+    }
+</script>
 
 <button onclick={ fn } style=`font-size: ${ size }px` class="button-styles">
     { text }
 </button>
+
 
