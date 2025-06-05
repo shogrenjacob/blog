@@ -14,10 +14,42 @@ import { getCollection } from 'astro:content';
 		<HeaderLink href="/blog/videogames" class="header-link">Videogames</HeaderLink>
 		<HeaderLink href="/blog/computing" class="header-link">Computing</HeaderLink>
 		<HeaderLink href="/blog/life" class="header-link">Life</HeaderLink>
+		<HeaderLink></HeaderLink>
 
-		<Button fn="randomPost()" text="Feelin' Lucky" size="18"/>
+		<div class="hamburger" id="hamburger">
+			<img src="/search.svg" alt="Navigation" class="search">
+		</div>
+
+		<div id="mobile-menu" class="hide">
+			<HeaderLink href="/blog/media" class="header-link mobile">Media</HeaderLink>
+			<HeaderLink href="/blog/sports" class="header-link mobile">Sports</HeaderLink>
+			<HeaderLink href="/blog/videogames" class="header-link mobile">Videogames</HeaderLink>
+			<HeaderLink href="/blog/computing" class="header-link mobile">Computing</HeaderLink>
+			<HeaderLink href="/blog/life" class="header-link mobile">Life</HeaderLink>
+
+			<button id="exit-button" class="button-styles" style="font-size: 20px;">Exit</button>
+		</div>
 	</nav>
+
 </header>
+
+<script type="text/javascript">
+	const nav = document.getElementById("hamburger");
+	const menu = document.getElementById("mobile-menu");
+	const exit = document.getElementById("exit-button");
+
+	nav.addEventListener("click", () => {
+		menu.classList.add("show");
+		menu.classList.remove("hide");
+	})
+
+	exit.addEventListener("click", () => {
+		menu.classList.add("hide");
+		menu.classList.remove("show");
+	})
+	
+</script>
+
 <style>
 	header {
 		margin: 0;
@@ -76,9 +108,58 @@ import { getCollection } from 'astro:content';
 	.header-link {
 		font-size: 18px;
 	}
+
+	.hamburger {
+		display: none;
+	}
+
+	.show {
+		display: block;
+	}
+
+	.hide {
+		display: none;
+	}
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
+		}
+
+		nav .header-link {
+			display: none;
+		}
+
+		.hamburger {
+			display: block;
+			border: 1px solid black;
+			border-radius: 2px;
+			height: 30px;
+			cursor: pointer;
+		}
+
+		.search {
+			margin: 0;
+			padding: 0;
+			height: 30px;
+		}
+
+		#mobile-menu {
+			position: absolute;
+			right: 0px;
+			top: 50px;
+			background-color: #f5f5f5;
+			border: 1px solid black;
+			border-radius: 2px;
+			padding: 10px;
+		}
+
+		nav .mobile {
+			display: block;
+			margin-bottom: 20px;
+		}
+
+		.show {
+			display: block;
 		}
 	}
 </style>

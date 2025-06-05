@@ -86,4 +86,13 @@ const pinnedPost = (await getCollection('blog'))
 		margin-top: 42px;
 		margin-bottom: 27px;
 	}
+
+	@media (max-width: 720px) {
+		.flex-container {
+			display: flex;
+			flex-direction: column-reverse;
+			justify-content: center;
+			align-items: center;
+		}
+	}
 </style>

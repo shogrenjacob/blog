@@ -14,6 +14,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
             <Header/>
             <div class="not-found-container">
                 <h1 class="not-found-header">404: Page Not Found</h1>
+                <hr/>
                 <div class="not-found-subheading">
                     <p>The page you were looking for does not exist...</p>
                     <a href="/" class="button-styles" style="padding-left: 5px; padding-right: 5px;">Home</a>
@@ -42,5 +43,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         justify-content: center;
         align-items: center;
         gap: 30px;
+    }
+
+    hr {
+        width: 80%;
+        border: none;
+        border-top: 1px solid black;
+        margin: 20px 0; 
     }
 </style>
