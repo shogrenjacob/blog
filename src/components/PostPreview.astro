@@ -18,6 +18,10 @@ const { id, title, date, description, category } = Astro.props
         border: 1px solid black;
         border-radius: 2px;
     }
+
+    .read-more:hover {
+        color: #36c;
+    }
 </style>
 
 <div>
@@ -29,7 +33,7 @@ const { id, title, date, description, category } = Astro.props
         <hr>
         <p>{ description }</p>
     </a>
-    <a href={`/blog/${ id }/`}>Read More &rarr;</a>
+    <a href={`/blog/${ id }/`} class="read-more">Read More &rarr;</a>
     <Category category={`${ category }`}></Category>
 </div>
 

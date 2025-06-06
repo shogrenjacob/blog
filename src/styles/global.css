@@ -153,10 +153,24 @@ hr {
 	border-radius: 2px;
 	cursor: pointer;
 }
+.button-styles:hover {
+	border: 1px solid #36c;
+	color: #36c;
+	border-radius: 2px;
+}
 
 .blog-styles p a {
 	color: #36c;
 	text-decoration: underline;
+}
+
+.back-button {
+	margin-bottom: 100px; 
+	margin-top: 20px;
+}
+
+.back-button:hover {
+	color: #36c;
 }
 
 .sr-only {

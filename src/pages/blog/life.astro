@@ -6,6 +6,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Category from '../../components/Category.astro';
+import PostPreview from '../../components/PostPreview.astro';
 
 const posts = (await getCollection('blog'))
     .filter((post) => post.data.category === 'Life')
@@ -34,7 +35,6 @@ const posts = (await getCollection('blog'))
 			ul li {
 				width: calc(50% - 1rem);
                 min-width: 425px;
-				border: 1px solid black;
 				background-color: #F5F5F5;
 				border-radius: 2px;
 			}
@@ -85,7 +85,6 @@ const posts = (await getCollection('blog'))
 				ul li {
 					width: 100%;
 					text-align: center;
-					border: 1px solid black;
 				}
 				ul li:first-child {
 					margin-bottom: 0;
@@ -107,21 +106,19 @@ const posts = (await getCollection('blog'))
 					{
 						posts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										Last Updated On: <FormattedDate date={post.data.pubDate} />
-									</p>
-									<hr>
-									<p>{post.data.description}</p>
-								</a>
-								<a href={`/blog/${post.id}/`}>Read More &rarr;</a>
-								<Category category={`${post.data.category}`}></Category>
+								<PostPreview 
+									id={ post.id } 
+									title={ post.data.title } 
+									date={ post.data.pubDate }
+									description={ post.data.description }
+									category={ post.data.category } >
+
+								</PostPreview>
 							</li>
 						))
 					}
 				</ul>
-				<a href="/" style="margin-bottom:100px; margin-top:20px"><u>Back</u></a>
+				<a href="/" class="back-button"><u>Back</u></a>
 				<br>
 				<br>
 				<br>
