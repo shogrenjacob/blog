@@ -10,6 +10,7 @@
                 .then(() => {
                     console.log('SUCCESS!');
                     alert("Thank you for your response!");
+                    document.getElementById("contact-form").reset();
                 }, (error) => {
                     console.log('FAILED...', error);
                     alert("ERROR")
