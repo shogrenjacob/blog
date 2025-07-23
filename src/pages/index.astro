@@ -27,7 +27,7 @@ const pinnedPost = (await getCollection('blog'))
 			<Header></Header>
 			<div class="content-container flex-container">
 				<div>
-					<img src="/blog-placeholder-2.jpg" alt="Me!">
+					<img src="/me.jpg" alt="Me!" id="me">
 					<!-- Pinned Posts -->
 					<h2 class="bottom-header" style="margin-bottom: 27px;"><u>Pinned Post</u> 📌</h2>
 					{
@@ -75,6 +75,7 @@ const pinnedPost = (await getCollection('blog'))
 		height: 320px;
 		width: 320px;
 		margin-bottom: -25px;
+		object-fit: cover;
 	}
 
 	.flex-container div {
