@@ -132,6 +132,7 @@ pre > code {
 }
 blockquote {
 	border-left: 4px solid var(--accent);
+	background-color: rgba(51, 102, 204, 15%);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
@@ -189,6 +190,11 @@ hr {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+.inline-link {
+	text-decoration: underline;
+	color: #36c;
 }
 
 @media (max-width: 720px) {
