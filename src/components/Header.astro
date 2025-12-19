@@ -1,6 +1,7 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import Button from './Button.astro';
+import Submenu from './SubMenu.astro';
 import { SITE_TITLE } from '../consts';
 import { getCollection } from 'astro:content';
 ---
@@ -9,12 +10,18 @@ import { getCollection } from 'astro:content';
 	<nav>
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 
-		<HeaderLink href="/blog/media" class="header-link">Media</HeaderLink>
+		<!-- <HeaderLink href="/blog/media" class="header-link">Media</HeaderLink>
 		<HeaderLink href="/blog/sports" class="header-link">Sports</HeaderLink>
 		<HeaderLink href="/blog/videogames" class="header-link">Videogames</HeaderLink>
 		<HeaderLink href="/blog/computing" class="header-link">Computing</HeaderLink>
-		<HeaderLink href="/blog/life" class="header-link">Life</HeaderLink>
-		<HeaderLink></HeaderLink>
+		<HeaderLink href="/blog/life" class="header-link">Life</HeaderLink> -->
+		<div class="link-container">
+			<HeaderLink href="/blog" class="header-link">Blog</HeaderLink>
+			<HeaderLink href="#" class="header-link">Photo Gallery</HeaderLink>
+
+		</div>
+
+
 
 		<div class="hamburger" id="hamburger">
 			<img src="/search.svg" alt="Navigation" class="search">
@@ -79,7 +86,7 @@ import { getCollection } from 'astro:content';
 	nav {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: flex-start;
 		border-bottom: 1px solid;
 		padding-left: 20px;
 		padding-right: 20px;
@@ -124,6 +131,18 @@ import { getCollection } from 'astro:content';
 	.hide {
 		display: none;
 	}
+
+	.link-container {
+		display: flex;
+		margin-left: 57%;
+		justify-content: flex-end;
+	}
+
+	.link-container a {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;

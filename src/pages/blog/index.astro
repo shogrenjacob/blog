@@ -2,6 +2,7 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import SearchFilter from '../../components/SearchFilter.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
@@ -9,10 +10,18 @@ import Category from '../../components/Category.astro';
 import PostPreview from '../../components/PostPreview.astro';
 
 const posts = (await getCollection('blog'))
-	.filter((post) => post.data.category != '')
+	.filter((post) => post.data.category != 'Pinned' && post.data.category != "")
 	.sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+function FilterPosts(tag: string, posts: any) {
+	const filteredPosts = posts
+	.filter((post: any) => post.data.category == tag)
+	.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),);
+	
+	return filteredPosts;
+}
 ---
 
 <!doctype html>
@@ -21,7 +30,7 @@ const posts = (await getCollection('blog'))
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			main {
-				width: 960px;
+				width: 1000px;
 			}
 			ul {
 				display: flex;
@@ -105,10 +114,12 @@ const posts = (await getCollection('blog'))
 	<body>
 		<main>
 			<Header />
+		
 			<section>
+				<SearchFilter></SearchFilter>
 				<ul>
 					{
-						posts.map((post) => (
+						posts.map((post: any) => (
 							<li>
 								<PostPreview 
 									id={ post.id } 
