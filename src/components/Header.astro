@@ -9,12 +9,16 @@ import { getCollection } from 'astro:content';
 	<nav>
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 
-		<HeaderLink href="/blog/media" class="header-link">Media</HeaderLink>
+		<!-- <HeaderLink href="/blog/media" class="header-link">Media</HeaderLink>
 		<HeaderLink href="/blog/sports" class="header-link">Sports</HeaderLink>
 		<HeaderLink href="/blog/videogames" class="header-link">Videogames</HeaderLink>
 		<HeaderLink href="/blog/computing" class="header-link">Computing</HeaderLink>
 		<HeaderLink href="/blog/life" class="header-link">Life</HeaderLink>
-		<HeaderLink></HeaderLink>
+		<HeaderLink></HeaderLink> -->
+		<div class="link-container">
+			<HeaderLink href="/blog/" class="header-link">Blog</HeaderLink>
+			<HeaderLink href="#" class="header-link">Photo Gallery</HeaderLink>
+		</div>
 
 		<div class="hamburger" id="hamburger">
 			<img src="/search.svg" alt="Navigation" class="search">
@@ -26,6 +30,7 @@ import { getCollection } from 'astro:content';
 			<HeaderLink href="/blog/videogames" class="header-link mobile">🕹️ Videogames</HeaderLink>
 			<HeaderLink href="/blog/computing" class="header-link mobile">🖥️ Computing</HeaderLink>
 			<HeaderLink href="/blog/life" class="header-link mobile">🌿 Life</HeaderLink>
+			<HeaderLink href="#" class="header-link mobile">📷 Photo Gallery</HeaderLink>
 
 			<button id="exit-button" class="button-styles" style="font-size: 20px;">Exit</button>
 		</div>
@@ -123,6 +128,15 @@ import { getCollection } from 'astro:content';
 
 	.hide {
 		display: none;
+	}
+	.link-container {
+		display: flex;
+		margin-left: 30%;
+		justify-content: flex-end;
+	}
+	.link-container a {
+		margin-left: 10px;
+		margin-right: 10px;
 	}
 	@media (max-width: 720px) {
 		.social-links {

@@ -1,0 +1,33 @@
+---
+import { CATEGORIES } from "../consts"
+---
+<style>
+    search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 4%;
+    }
+
+    .category-link {
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    @media (max-width: 400px) {
+        .category-link {
+            font-size: 14px;
+            padding-left: 2%;
+            padding-right: 2%;
+        }
+    }
+</style>
+
+<search>
+    {
+        CATEGORIES.map((category: string) => (
+            <a href={`/blog/${ category.toLowerCase() }`} class="category-link">{ category }</a>
+        ))
+    }
+    <a href="/blog/" class="category-link">All</a>
+</search>
