@@ -1,0 +1,77 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import PostPreview from '../components/PostPreview.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import Category from '../components/Category.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<main>
+			<Header></Header>
+			<div class="content-container flex-container">
+				<div>
+					<h2><u>About</u> 🌎</h2>
+					<p>
+						Hey there! Welcome to my blog, my name's Jacob (he/him).
+						On this site of many wonders, you can find stream-of-thought writings of just about anything
+						that interests me or captures my attention. I'm not much a writer so please excuse the scatter-brained
+						nature of my posts.
+					</p>
+					<a href="/blog" class="button-styles" style="padding: 5px;">View All Posts</a>
+					<br>
+					<br>
+					<br>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
+
+<style>
+	.flex-container {
+		display: flex;
+		justify-content: space-evenly;
+		gap: 37px;
+	}
+
+	img {
+		height: 320px;
+		width: 320px;
+		margin-bottom: -25px;
+		object-fit: cover;
+	}
+
+	.flex-container div {
+		min-width: 320px;
+	}
+
+	h2 {
+		padding: 0em 0.5em;
+		font-weight: 200;
+	}
+
+	.bottom-header {
+		margin-top: 42px;
+		margin-bottom: 27px;
+	}
+
+	@media (max-width: 720px) {
+		.flex-container {
+			display: flex;
+			flex-direction: column-reverse;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+</style>
