@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+
+const images = Object.values(
+    import.meta.glob("../content/photos/*", {eager: true})
+);
+---
+
+<style>
+    .gallery-image {
+        width: 100%;
+        height: auto;
+        border-radius: 0%;
+    }
+
+    .gallery-container {
+        column-count: 3;
+        column-gap: 0.5rem;
+    }
+</style>
+
+<div class="gallery-container">
+    {
+        images.map((img: any) => (
+            <Image src={img.default} alt="Test" class="gallery-image"></Image>
+        ))
+    }
+</div>

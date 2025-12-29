@@ -9,6 +9,7 @@ import PostPreview from '../components/PostPreview.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import Category from '../components/Category.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
 ---
 
 <!doctype html>
@@ -21,14 +22,7 @@ import Category from '../components/Category.astro';
 			<Header></Header>
 			<div class="content-container flex-container">
 				<div>
-					<h2><u>About</u> 🌎</h2>
-					<p>
-						Hey there! Welcome to my blog, my name's Jacob (he/him).
-						On this site of many wonders, you can find stream-of-thought writings of just about anything
-						that interests me or captures my attention. I'm not much a writer so please excuse the scatter-brained
-						nature of my posts.
-					</p>
-					<a href="/blog" class="button-styles" style="padding: 5px;">View All Posts</a>
+					<PhotoGallery></PhotoGallery>
 					<br>
 					<br>
 					<br>
