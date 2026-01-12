@@ -1,0 +1,99 @@
+---
+title: 'Symmetric Generation'
+description: "Weird happening while experimenting!"
+pubDate: 'Jan 12 2026'
+heroImage: '/blog-placeholder-5.jpg'
+category: 'Computing'
+---
+
+Recently I've been messing around with Pygame as a means to explore topics like [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton), 
+[procedural generation](https://en.wikipedia.org/wiki/Procedural_generation), and [emergent behavior](https://en.wikipedia.org/wiki/Emergence) (inspired by [Emergent Garden](https://www.youtube.com/@EmergentGarden/featured)).
+I am by no means an expert in _any_ of these subjects and truly have only really dug into them over the past couple weeks.
+
+An exercise in procedural generation that I've been doing the past few days is finding a way to generate caves and tunnels that look 
+similar to those in the game Terraria. Now, I could probably go and research **exactly** how Terraria caves are generated and **exactly** 
+what algorithms they use, but I wanted to screw around and figure it out myself. In doing this, I've found that I run into a pretty strange problem in generating terrain.
+
+To understand the problem, we should look at how my caves are generated as of right now.
+
+My caves are created as a 2d array of "cells" (representing a 2d plane) where a cell is singular block in the terrain.
+The terrain is represented on the back-end with a bitmap where a 1 represents a cell and a 0 represents open air.
+The first step of generation is initializing each cell in the world to a random 0 or 1 using the following function:
+
+```python
+def init_board():
+    for i in range(COLS):
+        for j in range(ROWS):
+            active = random.randint(0, 1)
+            board[i][j] = active
+```
+This function produces a world that looks something like this:
+
+![Random Noise](/symmetry/random.png)
+
+This is obviously just supposed to be a completely random noisy world that we'll use to further produce better results.
+
+The next step involves another function called ```caveify()``` which reduces noise by checking each cell and deleting it if it has less than 2 neighboring cells that are active.
+
+```python
+def caveify():
+    for c in range(COLS):
+        for r in range(ROWS):
+            if check_neighbors(board, r, c) < 2:
+                board[c][r] = 0
+```
+
+After calling caveify a couple times, you'll see that the world converges to a constant structure, in my case it looks like this:
+
+![After Caveify](/symmetry/caveify.png)
+
+If you have a good eye, you might already be able to spot the issue I'm facing but I'll move along anyways.
+The next step in generation is to call the ```fill_holes()``` function, which aims to make the walls more solid, rather than having random
+single cells of open air, creating real cave walls.
+
+```python
+def fill_holes():
+    for c in range(COLS):
+        for r in range(ROWS):
+            if board[c][r] == 1 and check_neighbors(board, r, c) > 4:
+                set_neighbors(board, r, c, 1)
+```
+
+After a first pass of ```fill_holes()``` it should produce a structure similar to this:
+
+![After Caveify](/symmetry/fill-holes.png)
+
+> Note: We will make a couple passes of this function as well as the following function to further create smooth, solid walls.
+
+Finally, we'll use a function ```create_chambers()``` which makes cleaner chambers by deleting most floating singular or small groups of cells.
+```python
+def create_chambers():
+    for c in range(COLS):
+        for r in range(ROWS):
+            if board[c][r] == 0 and check_neighbors(board, r, c) < 2:
+                set_neighbors(board, r, c, 0)
+```
+
+Which results in a structure like the following:
+
+![After Creating Chambers](/symmetry/create-chambers.png)
+
+To me, create chambers comes off as a little too aggressive in deleting cells (I'm mid developing this when I found the issue I _promise_ I'm getting to) so this may change in the future.
+
+I like to go between ```fill_holes()``` and ```create_chambers()``` to taste which results in our final structure (which kind of looks like a lobster?):
+
+![Lobster?](/symmetry/final-struct.png)
+
+> This structure is actually from a different run of the program (I accidentally restarted the generation)
+
+The problem I'm running into now that it seems, no matter what random noise I generate from, that I'm getting structures that are nearly symmetrical along the diagonal. Here's a few more to show you what I mean:
+
+![Example 1](/symmetry/sym-1.png)
+![Example 2](/symmetry/sym-2.png)
+![Example 3](/symmetry/sym-3.png)
+
+Maybe there's a simple reason for this that I'm missing, but I don't even know what I would google to understand what's going on. I've tried different methods
+of pseudo-random number generation and I get the same results, so I wonder if its some blunder in my code. 
+
+Either way, if you'd like to help figure out what's going on, add to the program, or just play with the generator itself, I have the [repo](https://github.com/shogrenjacob/cave-gen) on Github!
+The readme has instructions for installing and using the generator, and obviously let me know if you find anything cool! I'll be sure to credit you and write a follow-up.

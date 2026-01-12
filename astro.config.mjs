@@ -11,7 +11,7 @@ export default defineConfig({
     integrations: [mdx(), sitemap(), react()],
     markdown: {
         shikiConfig: {
-            theme: 'gruvbox-dark-medium'
+            theme: 'one-dark-pro'
         },
     },
 });
