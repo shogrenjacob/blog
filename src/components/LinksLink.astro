@@ -1,0 +1,19 @@
+---
+interface Props {
+    link: string;
+    desc: string;
+}
+
+const { link, desc } = Astro.props;
+---
+
+<p>
+    <a href={ link } class="inline-link" target="_blank">{ link }</a> - { desc }
+</p>
+
+<style>
+    p {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+</style>

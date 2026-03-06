@@ -197,6 +197,10 @@ hr {
 	color: #36c;
 }
 
+.inline-link:hover {
+	color: #36c;
+}
+
 @media (max-width: 720px) {
 	body {
 		font-size: 18px;

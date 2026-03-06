@@ -1,0 +1,46 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import LinksLink from '../components/LinksLink.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<main>
+			<Header></Header>
+			<div class="content-container flex-container">
+                <h2 class="bottom-header">Me</h2>
+                <div style="margin-top: 20px; margin-bottom: 20px;">
+                    <LinksLink link="https://bandcamp.com/shogrenjacob" desc="My Bandcamp"></LinksLink>
+                    <LinksLink link="https://www.instagram.com/sh0gren/" desc="My Instagram"></LinksLink>
+                    <LinksLink link="https://github.com/shogrenjacob" desc="My Github"></LinksLink>
+                    <LinksLink link="https://shogrenjacob.github.io/16-bit-cpu/" desc="Guin-16 Docs, my self-made CPU architecture"></LinksLink>
+                </div>
+                <h2 class="bottom-header">Resources</h2>
+                <div style="margin-top: 20px; margin-bottom: 20px;">
+                    <LinksLink link="https://www.buildyourownlisp.com/" desc="Great book to help you learn C and build your own lisp programming language!"></LinksLink>
+                    <LinksLink link="https://www.raylib.com/" desc="Fun graphics and game dev library"></LinksLink>
+                    <LinksLink link="https://32bit.cafe/" desc="Tips on making your own website and ideas for it"></LinksLink>
+                    <LinksLink link="https://angom.myweb.cs.uwindsor.ca/teaching/cs330/WritingOS.pdf" desc="Build your own OS from scratch"></LinksLink>
+                    <LinksLink link="https://browser.engineering/" desc="Web browser engineering book"></LinksLink>
+                    <LinksLink link="https://craftinginterpreters.com/" desc="Learn to build your own interpreter"></LinksLink>
+                    <LinksLink link='https://obsidian.md/' desc="How I take my notes"></LinksLink>
+                    <LinksLink link="https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme" desc='My VSCode theme (HC Wonderland Wood variant)'></LinksLink>
+                    <LinksLink link="https://astro.build/" desc="Framework I used to build this blog!"></LinksLink>
+                    <LinksLink link='https://indieweb.org/' desc="Indie Web Camp wiki"></LinksLink>
+                    <LinksLink link='https://www.chessprogramming.org/Main_Page' desc='Chess programming wiki'></LinksLink>
+                    <LinksLink link='https://wiki.osdev.org/Expanded_Main_Page' desc="OsDev Wiki"></LinksLink>
+                </div>
+                <h2 class="bottom-header">Other Blogs</h2>
+                    <LinksLink link="https://jamesg.blog" desc="The blog that inspired by site!"></LinksLink>
+                    <LinksLink link='https://austinhenley.com/' desc='Inspired some of my projects'></LinksLink>
+                    <LinksLink link='https://tgum.nekoweb.org' desc='Another great blog :)'></LinksLink>
+			</div>
+		</main>
+	</body>
+</html>
