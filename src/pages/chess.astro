@@ -1,0 +1,45 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <link rel="stylesheet" href="../../node_modules/cm-chessboard/assets/chessboard.css">
+	</head>
+
+    <script type="module">
+        import {Chessboard, FEN, INPUT_EVENT_TYPE} from "../../node_modules/cm-chessboard/src/Chessboard.js"
+
+        const board = new Chessboard(document.getElementById("board"), {
+            position: FEN.start,
+            assetsUrl: "../../node_modules/cm-chessboard/assets/" // wherever you copied the assets folder to, could also be in the node_modules folder
+        })
+
+        board.enableMoveInput(inputHandler)
+
+        function inputHandler(event)
+        {
+            console.log(event);
+            if(event.type === INPUT_EVENT_TYPE.moveInputStarted || event.type === INPUT_EVENT_TYPE.validateMoveInput)
+            {
+                if (event.type === INPUT_EVENT_TYPE.validateMoveInput && !INPUT_EVENT_TYPE.validateMoveInput)
+                {
+                    return false;   
+                }
+                return true;
+            }
+        }
+    </script>
+	<body>
+		<main>
+			<Header></Header>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <div id="board" style="margin-top: 50px; width: 80%;">
+                </div>
+            </div>
+            <hr style="margin-top: 50px;">
+		</main>
+	</body>
+</html>
